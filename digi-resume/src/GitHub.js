@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const GitHub = () => {
   const [contributions, setContributions] = useState({});
+  const [avatar , setAvatar] = useState("");
   const username = 'manosundarmanivel';
   const accessToken = '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';
   
@@ -10,6 +11,7 @@ const GitHub = () => {
       const query = `
         {
           user(login: "${username}") {
+            avatarUrl
             contributionsCollection {
               contributionCalendar {
                 totalContributions
@@ -38,6 +40,7 @@ const GitHub = () => {
         });
 
         const responseData = await response.json();
+        setAvatar(responseData.data.user.avatarUrl);
         setContributions(responseData.data.user.contributionsCollection);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -49,6 +52,7 @@ const GitHub = () => {
 
   return (
     <div>
+      <img  src={avatar}/>
       <h1>GitHub Contributions</h1>
       <p>Total contributions: {contributions.contributionCalendar?.totalContributions}</p>
       {/* Display other contribution metrics */}
