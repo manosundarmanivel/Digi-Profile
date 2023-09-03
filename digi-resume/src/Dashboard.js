@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sample = () => {
+const Dashboard = () => {
   return (
     <div className="font-poppins">
       <div>
@@ -89,4 +89,4 @@ const Sample = () => {
   );
 };
 
-export default Sample;
+export default Dashboard;
