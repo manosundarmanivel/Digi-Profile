@@ -4,12 +4,15 @@ import GitHub from './GitHub';
 import LeetCode from './LeetCode';
 
 import Dashboard from './Dashboard';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 function App() {
   return (
-    <div>
-      <LeetCode/>
-      <Dashboard/>
+    <div className='font-poppins'>
+     <SignIn/>
+      {/* <LeetCode/>
+      <Dashboard/> */}
     </div>
   );
 }
