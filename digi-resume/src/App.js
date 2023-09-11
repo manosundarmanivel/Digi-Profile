@@ -11,9 +11,9 @@ import Home from './Home';
 function App() {
   return (
     <div className='font-poppins'>
-    <Home/>
-      {/* <LeetCode/>
-      <Dashboard/> */}
+    {/* <Home/> */}
+      <LeetCode/>
+      {/* <Dashboard/> */}
     </div>
   );
 }

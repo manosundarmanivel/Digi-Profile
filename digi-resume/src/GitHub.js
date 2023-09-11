@@ -4,7 +4,7 @@ const GitHub = () => {
   const [contributions, setContributions] = useState({});
   const [avatar , setAvatar] = useState("");
   const username = 'manosundarmanivel';
-  const accessToken = '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';
+  const accessToken = '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';
   
   useEffect(() => {
     const fetchData = async () => {
