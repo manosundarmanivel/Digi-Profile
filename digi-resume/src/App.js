@@ -10,7 +10,7 @@ import Home from './Home';
 
 function App() {
   return (
-    <div className='font-poppins'>
+    <div className='font-poppins bg-[#f7f8fa]'>
     {/* <Home/> */}
       <LeetCode/>
       {/* <Dashboard/> */}
