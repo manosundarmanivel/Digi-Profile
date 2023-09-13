@@ -7,13 +7,15 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useSearchParams } from "react-router-dom";
 
 const LeetCode = () => {
   const [submission, setSubmissions] = useState();
   const [problemsCount, setProblemsCount] = useState(0);
   const [problems, setProblems] = useState([]);
   const [website, setWebsite] = useState();
-  const username = "manosundar";
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("v");
   const value = 0;
 
   const getData = async () => {
