@@ -1,17 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import leetimg from "./img/leetimg.png";
 import gitimg from "./img/gitpng.png";
 import SendIcon from "@mui/icons-material/Send";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
+import Bg from "./img/bg.jpg";
 
 const Start = () => {
   const [leetcodeUsername, setLeetcodeUsername] = useState("");
   const [githubUsername, setGithubUsername] = useState("");
-
-  return (
+  const displayName = localStorage.getItem("name");
+  const photoURL = localStorage.getItem("photoURL");
+  const [ userStatus , setUserStatus] = useState(false);
+  const navigate = useNavigate();
+  const handelLogOut=()=>
+  {
+    localStorage.clear();
+    navigate('/');
+  }
+  useEffect(()=>{
+    const loggedInUser = localStorage.getItem("name");
+    if(loggedInUser)
+    {
+      setUserStatus(true);
+    }
+  },[])
+   return(
+  userStatus? 
+  ( 
     <div className="">
-      <div className="bg-[#252b32] h-[400px]">
-        <h1>Get All Your Profiles</h1>
+      <div className="bg-[#252b32] p-5 h-[400px] ">
+       <div className="flex items-center pl-[1150px]">
+        <img className="rounded-full w-[60px]" src={photoURL}/>
+        <div className="px-2">
+        <h1 className="text-white text-[16px]">{displayName.toUpperCase()}</h1>
+        <button className="text-[16px] text-white" onClick={()=>{
+          handelLogOut();
+          
+        }} >LogOut <LogoutIcon sx={{color:'white'}}/></button>
+        </div>
+       </div>
       </div>
       <div className="">
         <div className="absolute inset-1 shadow-lg rounded-lg bg-white opacity-100 my-64 mx-72">
@@ -85,7 +113,7 @@ const Start = () => {
         {/* Your content */}
       </div>
     </div>
-  );
+  ): <h1>Not Logged In</h1>);
 };
 
 export default Start;

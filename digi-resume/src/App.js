@@ -9,6 +9,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 import Start from './Start';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Googleauth from './Googleauth';
 
 function App() {
 
@@ -42,6 +43,10 @@ function App() {
     {
       path:'/github',
       element:<GitHub/>
+    },
+    {
+      path:'/google',
+      element:<Googleauth/>
     }
 
   ])
