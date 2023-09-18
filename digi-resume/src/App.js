@@ -7,9 +7,9 @@ import Dashboard from './Dashboard';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Home from './Home';
-import Start from './Start';
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Googleauth from './Googleauth';
+
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
     },
     {
       path:'/dashboard',
-      element:<Start/>
+      element:<Dashboard/>
     },
     {
       path:'/leetcode',
@@ -44,14 +44,11 @@ function App() {
       path:'/github',
       element:<GitHub/>
     },
-    {
-      path:'/google',
-      element:<Googleauth/>
-    }
+   
 
   ])
   return (
-    <div className='font-poppins bg-[#f7f8fa]'>
+    <div className='font-poppins '>
    
     <RouterProvider router={AppRouter}/>
      

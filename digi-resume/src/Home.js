@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className="">
       <div className="flex justify-between items-center px-14 py-5 ">
-        <h1 className="text-[30px] font-extrabold">Profilio.in</h1>
+        <h1 className="text-[30px] font-extrabold">Profilio<span className="text-[#f6a130]">.in</span></h1>
         <div className="border  border-[#323234] p-3">
           <h1>Try for free</h1>
         </div>

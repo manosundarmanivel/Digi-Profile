@@ -1,185 +1,584 @@
-import React from "react";
-import DoneIcon from "@mui/icons-material/Done";
-import TimelapseIcon from '@mui/icons-material/Timelapse';
-import ReportIcon from '@mui/icons-material/Report';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import  { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import leetimg from "./img/leetimg.png";
+import gitimg from "./img/gitpng.png";
+import hackerrank from "./img/hackerrank.png"
+import SendIcon from "@mui/icons-material/Send";
+import { Link, useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
+import Bg from "./img/bg.jpg";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import { auth, db } from "./Firebase";
+import {
+  addDoc,
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+} from "firebase/firestore";
+
 const Dashboard = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [contributions, setContributions] = useState({});
-  const [avatar , setAvatar] = useState("");
-  const username = 'manosundarmanivel';
-  const accessToken = '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';
-  console.log(contributions.totalCommitContributions
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
+  
 
-    )
-  useEffect(() => {
-    const fetchData = async () => {
-      const query = `
-        {
-          user(login: "${username}") {
-            avatarUrl
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-              }
-              totalCommitContributions
-              totalIssueContributions
-              totalPullRequestContributions
-              totalPullRequestReviewContributions
-              totalRepositoriesWithContributedCommits
-              totalRepositoriesWithContributedIssues
-              totalRepositoriesWithContributedPullRequests
-              totalRepositoriesWithContributedPullRequestReviews
-            }
-          }
-        }
-      `;
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-      try {
-        const response = await fetch('https://api.github.com/graphql', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query }),
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+  const [leetcodeUsername, setLeetcodeUsername] = useState("");
+
+  const [githubUsername, setGithubUsername] = useState("");
+  console.log(githubUsername);
+  const displayName = localStorage.getItem("name");
+  const photoURL = localStorage.getItem("photoURL");
+  const email = localStorage.getItem("email");
+  const [userStatus, setUserStatus] = useState(false);
+  const navigate = useNavigate();
+  const handelLogOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+  const handleleetcodeNavigation = () => {
+    if (leetcodeUsername) {
+      navigate(`/leetcode?v=${leetcodeUsername}`);
+    } else {
+      toggleModal();
+    }
+  };
+  const handleGithubNavigation = () => {
+    if (githubUsername) {
+      navigate(`/github?v=${githubUsername}`);
+    } else {
+      toggleModal();
+    }
+  };
+
+  const handleSaveLeetcodeUsename = async () => {
+    try {
+      const user = auth.currentUser;
+
+      if (user) {
+        closeModal();
+        const userId = user.uid;
+
+        const userCollection = collection(db, `users/${userId}/Leetcode`);
+
+        const docRef = await addDoc(userCollection, {
+          content: leetcodeUsername,
         });
 
-        const responseData = await response.json();
-        setAvatar(responseData.data.user.avatarUrl);
-        setContributions(responseData.data.user.contributionsCollection);
-      } catch (error) {
-        console.error('Error fetching data:', error);
+        console.log("Username added with ID: ", docRef.id);
+      } else {
+        console.error("User not authenticated.");
       }
-    };
+    } catch (e) {
+      console.error("Error in saving username", e);
+    }
+  };
 
-    fetchData();
+  const handleSaveGithubUsename = async () => {
+    try {
+      const user = auth.currentUser;
+
+      if (user) {
+        closeModal();
+        const userId = user.uid;
+
+        const userCollection = collection(db, `users/${userId}/Github`);
+
+        const docRef = await addDoc(userCollection, {
+          content: githubUsername,
+        });
+
+        console.log("Username added with ID: ", docRef.id);
+      } else {
+        console.error("User not authenticated.");
+      }
+    } catch (e) {
+      console.error("Error in saving username", e);
+    }
+  };
+
+  const getLeetcodeData = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const userCollectionLeetcode = collection(db, `users/${userId}/Leetcode`);
+        const querySnapshotLeetcode = await getDocs(userCollectionLeetcode);
+
+        const allLeetcodeData = [];
+
+        querySnapshotLeetcode.forEach((doc) => {
+          allLeetcodeData.push(doc.data());
+        });
+
+        // Set the LeetCode username in state
+        if (allLeetcodeData.length > 0) {
+          setLeetcodeUsername(allLeetcodeData[0].content);
+        }
+      } else {
+        console.error("User not authenticated.");
+      }
+    } catch (e) {
+      console.error("Error in fetching LeetCode data", e);
+    }
+  };
+
+  const getGithubData = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const userCollectiongithub = collection(db, `users/${userId}/Github`);
+        const querySnapshotgithub = await getDocs(userCollectiongithub);
+
+        const allGithubData = [];
+
+        querySnapshotgithub.forEach((doc) => {
+          allGithubData.push(doc.data());
+        });
+
+        // Set the GitHub username in state
+        if (allGithubData.length > 0) {
+          setGithubUsername(allGithubData[0].content);
+        }
+      } else {
+        console.error("User not authenticated.");
+      }
+    } catch (e) {
+      console.error("Error in fetching Github data", e);
+    }
+  };
+
+  useEffect(() => {
+    console.log("1st")
+
+    
+    const loggedInUser = localStorage.getItem("name");
+    if (loggedInUser) {
+      setUserStatus(true);
+    }
   }, []);
-  return (
- contributions==null ? <h1>Loding...</h1>:
-  
-    <div className="font-poppins p-14 bg-[#f5f5f5]">
-      <div>
-        <div className="flex">
-          <img
-            src={avatar}
-            className="h-52 rounded-full"
-          />
-          <div className="px-10">
-            <h1 className="text-[35px] font-bold text-[#2d2d2d]">
-              Mano Sundar M
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        // Fetch GitHub and LeetCode data when authenticated
+        getGithubData();
+        getLeetcodeData();
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => {
+      // Unsubscribe from the auth state listener when the component unmounts
+      unsubscribe();
+    };
+  }, []);
+
+  return userStatus ? (
+    <div className="">
+      <div className="flex justify-between items-center px-14 py-3 shadow-lg ">
+        <div className="flex items-baseline">
+          <h1 className="text-[30px] font-extrabold">
+            Profilio<span className="text-[#f6a130]">.in</span>
+          </h1>
+          <div className="mx-1 px-1 bg-green-400 rounded-lg ">
+            <h1 className="text-[10px] p-[2px] text-white">beta</h1>
+          </div>
+        </div>
+
+        <div className="flex items-center">
+          <div className="px-4">
+            <NotificationsNoneIcon sx={{ fontSize: "28px" }} />
+          </div>
+          <div className="relative inline-block text-left">
+            <button
+              id="avatarButton"
+              type="button"
+              onClick={toggleDropdown}
+              className="w-10 h-10 rounded-full cursor-pointer"
+            >
+              <img
+                className=" rounded-full"
+                src={photoURL}
+                alt="User dropdown"
+              />
+            </button>
+
+            {isDropdownOpen && (
+              <div
+                id="userDropdown"
+                className="z-10  absolute  right-0 mt-6 shadow-lg bg-white divide-y divide-gray-100 rounded-lg shadow w-[350px] "
+                onClick={closeDropdown}
+              >
+                <div className="px-4 py-3 text-sm  flex items-center">
+                  <img
+                    className=" m-2 rounded-full w-20"
+                    src={photoURL}
+                    alt="User dropdown"
+                  />
+                  <div>
+                    <div className="font-bold text-[20px]">{displayName}</div>
+                    <div className="text-[12px] my-1 truncate">{email}</div>
+                  </div>
+                </div>
+                <ul className="py-2 text-md">
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+                      Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 ">
+                      Settings
+                    </a>
+                  </li>
+                </ul>
+                <div className="py-1 text-md">
+                  <a
+                    href="#"
+                    className="block px-4 py-2 hover:bg-gray-100 "
+                    onClick={() => {
+                      handelLogOut();
+                    }}
+                  >
+                    Sign out
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* <img className="rounded-full w-[50px] ring-2 ring-gray-300 p-1" src={photoURL} /> */}
+          {/* <div className="px-2">
+            <h1 className=" text-[16px] font-semibold">
+              {displayName.toUpperCase()}
             </h1>
-            <div className="flex text-[20px] items-center" >
-    <LocationOnIcon sx={{color:'red'}}/>
-    <h1 className="pl-2">India</h1>
-            </div>
-            {/* <h1 className="font-bold text-[#2d2d2d]">@manosundar</h1> */}
-            <div className="bg-white rounded-3xl p-2 mt-4">
-              <div className="flex text-center bg-[#f5f5f5] p-5 rounded-2xl">
-                <div className="px-4">
-                  <h1 className="text-[23px] font-bold">2</h1>
-                  <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                    Followers
-                  </h1>
-                </div>
-                <div className="px-4">
-                  <h1 className="text-[23px] font-bold">14</h1>
-                  <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                    Following
-                  </h1>
-                </div>
-                <div className="px-4">
-                  <h1 className="text-[23px] font-bold">{contributions.totalCommitContributions}</h1>
-                  <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                    Contributions
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="py-10">
-          <h1 className="font-bold text-[30px]">Total Statistics</h1>
-          <div className="flex text-center pt-5">
-            <div className="bg-white rounded-3xl p-2 m-3 w-52">
-              <div className="bg-[#e4f0d3] rounded-2xl p-3">
-                <DoneIcon sx={{ fontSize: 50, color: "#9fca63" }} />
-              </div>
-              <div className="pt-3 p-3">
-                <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                  Recent Commits
-                </h1>
-                <h1 className="text-[20px] font-bold">{contributions.totalRepositoriesWithContributedCommits}</h1>
-              </div>
-            </div>
-            <div className="bg-white rounded-3xl p-2 m-3 w-52">
-              <div className="bg-[#fde6cc] rounded-2xl p-3">
-                <TimelapseIcon sx={{ fontSize: 50, color: "#ff9c27" }}/>
-                
-              </div>
-              <div className="pt-3 p-3">
-                <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                  Pull Request
-                </h1>
-                <h1 className="text-[20px] font-bold">15</h1>
-              </div>
-            </div>
-            <div className="bg-white rounded-3xl p-2 m-3 w-52">
-              <div className="bg-[#cce1fc] rounded-2xl p-3">
-                <ReportIcon  sx={{ fontSize: 50, color: "#3e8dfd" }}/>
-               
-              </div>
-              <div className="pt-3 p-3">
-                <h1 className="text-[18px] text-[#7a7a7a] font-bold">
-                  Issues
-                </h1>
-                <h1 className="text-[20px] font-bold">{contributions.totalIssueContributions
-}</h1>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        <div>
-        <h1 className="font-bold text-[30px]">Repositories</h1>
-          <div>
-            <div className="flex">
-              <div>
-                <h1>icon</h1>
-              </div>
-              <div>
-                <h1>Committed Learner</h1>
-                <h1>Progress</h1>
-                <h1>Reach a 3 day streak</h1>
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <h1>icon</h1>
-              </div>
-              <div>
-                <h1>Committed Learner</h1>
-                <h1>Progress</h1>
-                <h1>Reach a 3 day streak</h1>
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <h1>icon</h1>
-              </div>
-              <div>
-                <h1>Committed Learner</h1>
-                <h1>Progress</h1>
-                <h1>Reach a 3 day streak</h1>
-              </div>
-            </div>
-          </div>
+            <button
+              className="text-[16px] "
+              onClick={() => {
+                handelLogOut();
+              }}
+            >
+              LogOut <LogoutIcon  />
+            </button>
+          </div> */}
         </div>
       </div>
-      <div></div>
+
+      <div className="">
+        <div className="flex flex-wrap justify-around">
+          <div className="mx-5  my-28 p-1 border rounded-lg w-[450px]">
+            <img src={leetimg} className="rounded-lg" />
+            <h1 className="font-bold px-2 py-1 text-[24px]">LeetCode </h1>
+
+            <button
+              type="button"
+              data-modal-target="authentication-modal"
+              onClick={() => {
+                handleleetcodeNavigation();
+              }}
+              className="block mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              View Profile
+            </button>
+
+            {/* Main modal */}
+            {isModalOpen && (
+              <div
+                id="authentication-modal"
+                tabIndex="-1"
+                aria-hidden="true"
+                className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-screen bg-gray-700 bg-opacity-50"
+              >
+                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                  <button
+                    type="button"
+                    className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    onClick={closeModal}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span className="sr-only">Close modal</span>
+                  </button>
+                  <div className="px-6 py-6 lg:px-8">
+                    <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                      Get your profile
+                    </h3>
+                    <form className="space-y-6" action="#">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Username
+                        </label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          placeholder="Enter your username"
+                          required
+                          value={leetcodeUsername}
+                          onChange={(e) => setLeetcodeUsername(e.target.value)}
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          handleSaveLeetcodeUsename();
+                        }}
+                        type="submit"
+                        className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        ADD
+                      </button>
+                      <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Not registered?{" "}
+                        <a
+                          href="#"
+                          className="text-blue-700 hover:underline dark:text-blue-500"
+                        >
+                          Create account
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+          </div>
+          <div className="mx-5 my-28 border p-1 w-[450px]  rounded-lg">
+            <img src={gitimg} className="rounded-lg" />
+            <h1 className="font-bold px-2 py-1 text-[20px]">GitHub</h1>
+            <button
+              type="button"
+              data-modal-target="authentication-modal"
+              onClick={() => {
+                handleGithubNavigation();
+              }}
+              className="block mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              View Profile
+            </button>
+
+            {/* Main modal */}
+            {isModalOpen && (
+              <div
+                id="authentication-modal"
+                tabIndex="-1"
+                aria-hidden="true"
+                className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-screen bg-gray-700 bg-opacity-50"
+              >
+                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                  <button
+                    type="button"
+                    className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    onClick={closeModal}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span className="sr-only">Close modal</span>
+                  </button>
+                  <div className="px-6 py-6 lg:px-8">
+                    <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                      Get your profile
+                    </h3>
+                    <form className="space-y-6" action="#">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Username
+                        </label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          placeholder="Enter your username"
+                          required
+                          value={githubUsername}
+                          onChange={(e) => setGithubUsername(e.target.value)}
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          handleSaveGithubUsename();
+                        }}
+                        type="submit"
+                        className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        ADD
+                      </button>
+                      <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Not registered?{" "}
+                        <a
+                          href="#"
+                          className="text-blue-700 hover:underline dark:text-blue-500"
+                        >
+                          Create account
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+          </div>
+          <div className="mx-5 my-28 border p-1 w-[450px]  rounded-lg">
+            <img src={hackerrank} className="rounded-lg" />
+            <h1 className="font-bold px-2 py-1 text-[20px]">GitHub</h1>
+            <button
+              type="button"
+              data-modal-target="authentication-modal"
+              onClick={() => {
+                handleGithubNavigation();
+              }}
+              className="block mx-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              View Profile
+            </button>
+
+            {/* Main modal */}
+            {isModalOpen && (
+              <div
+                id="authentication-modal"
+                tabIndex="-1"
+                aria-hidden="true"
+                className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-screen bg-gray-700 bg-opacity-50"
+              >
+                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                  <button
+                    type="button"
+                    className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    onClick={closeModal}
+                  >
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                    <span className="sr-only">Close modal</span>
+                  </button>
+                  <div className="px-6 py-6 lg:px-8">
+                    <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                      Get your profile
+                    </h3>
+                    <form className="space-y-6" action="#">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Username
+                        </label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                          placeholder="Enter your username"
+                          required
+                          value={githubUsername}
+                          onChange={(e) => setGithubUsername(e.target.value)}
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          handleSaveGithubUsename();
+                        }}
+                        type="submit"
+                        className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        ADD
+                      </button>
+                      <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        Not registered?{" "}
+                        <a
+                          href="#"
+                          className="text-blue-700 hover:underline dark:text-blue-500"
+                        >
+                          Create account
+                        </a>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+          </div>
+          
+        </div>
+      </div>
+
+      {/* Your content */}
     </div>
+  ) : (
+    <h1>Not Logged In</h1>
   );
 };
 
