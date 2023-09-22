@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TimeAgo from "./TimeStamp";
+import TimeAgo from "../Components/TimeStamp";
 import CircularProgress from "@mui/joy/CircularProgress";
 import ReportIcon from "@mui/icons-material/Report";
 import LinearProgress from "@mui/joy/LinearProgress";
@@ -8,6 +8,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useSearchParams } from "react-router-dom";
+import Shimmer from "../Components/Shimmer";
 
 const LeetCode = () => {
   const [submission, setSubmissions] = useState();
@@ -107,7 +108,7 @@ const LeetCode = () => {
   // }, 0);
 
   return submission == null ? (
-    <h1>Loading...</h1>
+    <Shimmer/>
   ) : (
     <div className="flex p-5 m-5 ">
       <div className="p-5 m-5 text-center bg-white rounded-xl shadow-lg w-[250px] h-[900px]">

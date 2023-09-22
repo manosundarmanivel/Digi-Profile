@@ -1,12 +1,12 @@
 
 import './App.css';
-import GitHub from './GitHub';
-import LeetCode from './LeetCode';
+import GitHub from './Pages/GitHub';
+import LeetCode from './Pages/LeetCode';
 
-import Dashboard from './Dashboard';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import Home from './Home';
+import Dashboard from './Pages/Dashboard';
+import SignIn from './Pages/SignUp';
+import SignUp from './Pages/SignUp';
+import Home from './Pages/Home';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 

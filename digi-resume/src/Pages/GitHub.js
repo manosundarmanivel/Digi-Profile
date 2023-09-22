@@ -4,7 +4,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import TimelapseIcon from '@mui/icons-material/Timelapse';
 import ReportIcon from '@mui/icons-material/Report';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import Shimmer from "../Components/Shimmer";
 const GitHub = () => {
   const [contributions, setContributions] = useState({});
   const [avatar , setAvatar] = useState("");
@@ -56,8 +56,8 @@ const GitHub = () => {
     fetchData();
   }, []);
 
-  return (
-    contributions==null ? <h1>Loding...</h1>:
+  return  (
+    avatar==null ? <Shimmer/> :
      
        <div className="font-poppins p-14 bg-[#f5f5f5]">
          <div>
