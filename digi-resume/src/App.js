@@ -9,6 +9,7 @@ import SignUp from './Pages/SignUp';
 import Home from './Pages/Home';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ProfileSettings from './Pages/Settings';
 
 
 function App() {
@@ -44,6 +45,10 @@ function App() {
       path:'/github',
       element:<GitHub/>
     },
+    {
+      path:'/settings',
+      element:<ProfileSettings/>
+    }
    
 
   ])

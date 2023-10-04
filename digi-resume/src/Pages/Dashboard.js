@@ -262,7 +262,7 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="/settings"
                       className="block px-4 py-2 text-black hover:bg-gray-100 "
                     >
                       Settings
@@ -289,14 +289,7 @@ const Dashboard = () => {
       <div>
         <div className="">
           <div className="mt-24 px-28">
-            {/* <h1 className="text-[40px] font-medium">
-              Welcome to Your Dashboard 😀
-            </h1> */}
-            {/* <p className="text-[24px] py-5">
-              This is your personalized dashboard where you can access various{" "}
-              <br></br>
-              features and information related to your account.
-            </p> */}
+          
           </div>
           <div className="flex flex-wrap justify-around  px-28">
             <div className="mx-5 my-10  p-1 shadow-lg rounded-lg w-[450px] ">
