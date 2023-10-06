@@ -8,6 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import commingSoonImg from "../Assets/img/comming-fotor.png";
 import leetlogo from "../Assets/img/leetcode.png";
 import githublogo from "../Assets/img/github.png";
+import CloseIcon from '@mui/icons-material/Close';
 // import Bg from "./img/bg.jpg";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { auth, db } from "../Database/Firebase";
@@ -200,6 +201,8 @@ const Dashboard = () => {
     };
   }, []);
 
+  
+  
   return userStatus ? (
     <div className="">
       <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg bg-opacity-100 text-white p-3 flex justify-between px-28">
@@ -236,6 +239,9 @@ const Dashboard = () => {
                 className="z-10  absolute  right-0 mt-6 shadow-lg bg-white divide-y divide-gray-100 rounded-lg shadow w-[350px] "
                 onClick={closeDropdown}
               >
+               <div className="text-end p-1 pr-2">
+               <button><CloseIcon sx={{color:"black"}}/></button>
+                </div>
                 <div className="px-4 py-3 text-sm  flex items-center">
                   <img
                     className=" m-2 rounded-full w-20"

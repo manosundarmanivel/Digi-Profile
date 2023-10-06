@@ -15,7 +15,7 @@ const GitHub = () => {
   const [avatar, setAvatar] = useState("");
   const [searchParams] = useSearchParams();
   const username = searchParams.get("v");
-  const accessToken = "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";
+  const accessToken = process.env.REACT_APP_GITHUB_TOKEN;
   const [followers, setFollowers] = useState("");
   const [following, setFollowing] = useState("");
   const [bio, setBio] = useState("");
