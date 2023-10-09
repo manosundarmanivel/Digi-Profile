@@ -44,6 +44,16 @@ const GitHub = () => {
                 url
               }
             }
+            gists(first: 10) {
+              nodes {
+                description
+                files {
+                  name
+                }
+                createdAt
+              }
+            }
+          
             followers {
               totalCount
             }
@@ -91,6 +101,7 @@ const GitHub = () => {
                 }
               }
             }
+            
             pullRequests(last: 100, orderBy: {field: CREATED_AT, direction: DESC}){
               totalCount
               nodes{
@@ -304,7 +315,9 @@ const GitHub = () => {
             ))}
           </div>
         </div>
-        <div>
+        {
+          contri.totalCount != 0 ? null :
+          <div>
           <h1 className="font-bold text-[30px] mt-5">Contributed Repositories</h1>
           <div className=" flex flex-wrap py-5 ">
             {contri.map((repo, index) => (
@@ -319,6 +332,29 @@ const GitHub = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        
+        }
+        <h1 className="font-bold text-[30px] mt-5">Total Repositories</h1>
+        <div className="flex flex-wrap p-2 ">
+        
+          {
+            totalrepo.map((repository,index)=>
+              (
+                <Link to={repository.url}>
+                <div className="p-2 m-2 rounded-full bg-yellow-100">
+                  <h1>{repository.name}</h1>
+                   </div></Link>
+                
+                
+              )
+            )
+          }
+        </div>
+        
+        <div>
+
         </div>
       </div>
       <div></div>
