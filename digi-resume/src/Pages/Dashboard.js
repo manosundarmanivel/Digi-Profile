@@ -45,7 +45,7 @@ const Dashboard = () => {
     
   };
   const closeGitModal = () => {
-    setIsLeetModalOpen(false);
+    setIsGitModalOpen(false);
     
   };
 
@@ -59,8 +59,9 @@ const Dashboard = () => {
     setIsDropdownOpen(false);
   };
   const [leetcodeUsername, setLeetcodeUsername] = useState("");
-
+console.log(leetcodeUsername);
   const [githubUsername, setGithubUsername] = useState("");
+  console.log(githubUsername);
   console.log(githubUsername);
   const displayName = localStorage.getItem("name");
   const photoURL = localStorage.getItem("photoURL");
@@ -141,7 +142,7 @@ const Dashboard = () => {
           db,
           `users/${userId}/Leetcode`
         );
-        const querySnapshotLeetcode = await getDocs(userCollectionLeetcode, orderBy('content' , 'asc'));
+        const querySnapshotLeetcode = await getDocs(userCollectionLeetcode);
 
         const allLeetcodeData = [];
 
@@ -151,6 +152,7 @@ const Dashboard = () => {
 
         // Set the LeetCode username in state
         if (allLeetcodeData.length > 0) {
+          console.log(allLeetcodeData[0].content);
           setLeetcodeUsername(allLeetcodeData[0].content);
         }
       } else {
