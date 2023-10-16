@@ -10,6 +10,8 @@ import Home from './Pages/Home';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProfileSettings from './Pages/Settings';
+import store from './Utils/Store';
+import { Provider } from 'react-redux';
 
 
 function App() {
@@ -53,10 +55,14 @@ function App() {
 
   ])
   return (
+   
+
+   
     <div className='font-poppins '>
+       <Provider store ={store}>
    
     <RouterProvider router={AppRouter}/>
-     
+    </Provider>
     </div>
   );
 }

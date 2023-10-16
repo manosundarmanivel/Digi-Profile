@@ -26,14 +26,27 @@ import PlatformCard from "../Components/PlatformCard";
 const Dashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLeetModalOpen, setIsLeetModalOpen] = useState(false);
+  const [isGitModalOpen, setIsGitModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const toggleLeetModal = () => {
+    
+    setIsLeetModalOpen(!isLeetModalOpen);
+   
+  };
+  const toggleGitModal = () => {
+    
+    
+    setIsGitModalOpen(!isGitModalOpen);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeLeetModal = () => {
+    setIsLeetModalOpen(false);
+    
+  };
+  const closeGitModal = () => {
+    setIsLeetModalOpen(false);
+    
   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -62,14 +75,14 @@ const Dashboard = () => {
     if (leetcodeUsername) {
       navigate(`/leetcode?v=${leetcodeUsername}`);
     } else {
-      toggleModal();
+      toggleLeetModal();
     }
   };
   const handleGithubNavigation = () => {
     if (githubUsername) {
       navigate(`/github?v=${githubUsername}`);
     } else {
-      toggleModal();
+      toggleGitModal();
     }
   };
 
@@ -78,7 +91,7 @@ const Dashboard = () => {
       const user = auth.currentUser;
 
       if (user) {
-        closeModal();
+        closeLeetModal();
         const userId = user.uid;
 
         const userCollection = collection(db, `users/${userId}/Leetcode`);
@@ -101,7 +114,7 @@ const Dashboard = () => {
       const user = auth.currentUser;
 
       if (user) {
-        closeModal();
+        closeGitModal();
         const userId = user.uid;
 
         const userCollection = collection(db, `users/${userId}/Github`);
@@ -128,7 +141,7 @@ const Dashboard = () => {
           db,
           `users/${userId}/Leetcode`
         );
-        const querySnapshotLeetcode = await getDocs(userCollectionLeetcode);
+        const querySnapshotLeetcode = await getDocs(userCollectionLeetcode, orderBy('content' , 'asc'));
 
         const allLeetcodeData = [];
 
@@ -154,7 +167,7 @@ const Dashboard = () => {
       if (user) {
         const userId = user.uid;
         const userCollectiongithub = collection(db, `users/${userId}/Github`);
-        const querySnapshotgithub = await getDocs(userCollectiongithub);
+        const querySnapshotgithub = await getDocs(userCollectiongithub,orderBy('content' , 'asc'));
 
         const allGithubData = [];
 
@@ -188,8 +201,9 @@ const Dashboard = () => {
       if (user) {
         setIsAuthenticated(true);
         // Fetch GitHub and LeetCode data when authenticated
-        getGithubData();
         getLeetcodeData();
+        getGithubData();
+        
       } else {
         setIsAuthenticated(false);
       }
@@ -319,7 +333,7 @@ const Dashboard = () => {
               </div>
 
               {/* Main modal */}
-              {isModalOpen && (
+              {isLeetModalOpen && (
                 <div
                   id="authentication-modal"
                   tabIndex="-1"
@@ -330,7 +344,7 @@ const Dashboard = () => {
                     <button
                       type="button"
                       className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                      onClick={closeModal}
+                      onClick={closeLeetModal}
                     >
                       <svg
                         className="w-3 h-3"
@@ -419,7 +433,7 @@ const Dashboard = () => {
               </div>
 
               {/* Main modal */}
-              {isModalOpen && (
+              {isGitModalOpen && (
                 <div
                   id="authentication-modal"
                   tabIndex="-1"
@@ -430,7 +444,7 @@ const Dashboard = () => {
                     <button
                       type="button"
                       className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                      onClick={closeModal}
+                      onClick={closeGitModal}
                     >
                       <svg
                         className="w-3 h-3"
