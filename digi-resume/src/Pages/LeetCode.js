@@ -25,6 +25,16 @@ const LeetCode = () => {
             
             matchedUser(username: "${username}") 
             {
+             
+                userCalendar
+                {
+                  activeYears
+                  dccBadges
+                  streak
+                  totalActiveDays
+                  submissionCalendar
+                }
+              
                 twitterUrl
                 githubUrl
                 linkedinUrl
@@ -83,12 +93,7 @@ const LeetCode = () => {
                   title
                   timestamp
                 }
-            streakCounter: streakCounter
-            {
-              currentDayCompleted
-              daysSkipped
-              streakCount
-            }
+            
         }
       `;
 
@@ -154,12 +159,9 @@ const LeetCode = () => {
               >
                 <div className="text-center ">
                   <h1 className="font-bold text-[20px] text-black">
-                    {submission.languageProblemCount.reduce(
-                      (accumulator, problem) => {
-                        return accumulator + problem.problemsSolved;
-                      },
-                      0
-                    )}
+                    {
+                      submission.submitStats.acSubmissionNum[1].count + submission.submitStats.acSubmissionNum[2].count + submission.submitStats.acSubmissionNum[3].count
+                    }
                   </h1>
                   <h1 className="text-[15px] text-black">Solved</h1>
                 </div>
