@@ -8,7 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import commingSoonImg from "../Assets/img/comming-fotor.png";
 import leetlogo from "../Assets/img/leetcode.png";
 import githublogo from "../Assets/img/github.png";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 // import Bg from "./img/bg.jpg";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { auth, db } from "../Database/Firebase";
@@ -30,23 +30,17 @@ const Dashboard = () => {
   const [isGitModalOpen, setIsGitModalOpen] = useState(false);
 
   const toggleLeetModal = () => {
-    
     setIsLeetModalOpen(!isLeetModalOpen);
-   
   };
   const toggleGitModal = () => {
-    
-    
     setIsGitModalOpen(!isGitModalOpen);
   };
 
   const closeLeetModal = () => {
     setIsLeetModalOpen(false);
-    
   };
   const closeGitModal = () => {
     setIsGitModalOpen(false);
-    
   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -59,7 +53,7 @@ const Dashboard = () => {
     setIsDropdownOpen(false);
   };
   const [leetcodeUsername, setLeetcodeUsername] = useState("");
-console.log(leetcodeUsername);
+  console.log(leetcodeUsername);
   const [githubUsername, setGithubUsername] = useState("");
   console.log(githubUsername);
   console.log(githubUsername);
@@ -169,7 +163,10 @@ console.log(leetcodeUsername);
       if (user) {
         const userId = user.uid;
         const userCollectiongithub = collection(db, `users/${userId}/Github`);
-        const querySnapshotgithub = await getDocs(userCollectiongithub,orderBy('content' , 'asc'));
+        const querySnapshotgithub = await getDocs(
+          userCollectiongithub,
+          orderBy("content", "asc")
+        );
 
         const allGithubData = [];
 
@@ -205,7 +202,6 @@ console.log(leetcodeUsername);
         // Fetch GitHub and LeetCode data when authenticated
         getLeetcodeData();
         getGithubData();
-        
       } else {
         setIsAuthenticated(false);
       }
@@ -217,13 +213,11 @@ console.log(leetcodeUsername);
     };
   }, []);
 
-  
-  
   return userStatus ? (
     <div className="">
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg bg-opacity-100 text-white p-3 flex justify-between px-28">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-lg bg-opacity-100 text-white p-3 flex justify-between lg:px-28 sm:px-2">
         <div className="flex items-baseline">
-          <h1 className="text-[30px] text-black font-extrabold">
+          <h1 className=" text-[30px]  text-black font-extrabold">
             Profilio<span className="text-[#f6a130]">.in</span>
           </h1>
           <div className="mx-1 px-1 bg-green-400 rounded-lg ">
@@ -255,8 +249,10 @@ console.log(leetcodeUsername);
                 className="z-10  absolute  right-0 mt-6 shadow-lg bg-white divide-y divide-gray-100 rounded-lg shadow w-[350px] "
                 onClick={closeDropdown}
               >
-               <div className="text-end p-1 pr-2">
-               <button><CloseIcon sx={{color:"black"}}/></button>
+                <div className="text-end p-1 pr-2">
+                  <button>
+                    <CloseIcon sx={{ color: "black" }} />
+                  </button>
                 </div>
                 <div className="px-4 py-3 text-sm  flex items-center">
                   <img
@@ -309,18 +305,16 @@ console.log(leetcodeUsername);
       </div>
 
       <div>
-        <div className="">
-          <div className="mt-24 px-28">
-          
-          </div>
-          <div className="flex flex-wrap justify-around  px-28">
-            <div className="mx-5 my-10  p-1 shadow-lg rounded-lg w-[450px] ">
+        <div className="lg:m-20">
+          <div className="mt-20 px-28"></div>
+          <div className="flex flex-wrap justify-around ">
+            <div className="mx-5 mt-10  p-1 shadow-lg rounded-lg lg:w-[410px] ">
               <img src={leetimg} className="rounded-lg" />
               <div className="flex p-2 justify-around">
-               <div className="flex items-center">
-                <img src={leetlogo} className="h-12"/>
-               <h1 className="font-bold px-2 py-1 text-[24px]">LeetCode </h1>
-               </div>
+                <div className="flex items-center">
+                  <img src={leetlogo} className="h-12" />
+                  <h1 className="font-bold px-2 py-1 text-[20px]">LeetCode </h1>
+                </div>
 
                 <button
                   type="button"
@@ -415,7 +409,7 @@ console.log(leetcodeUsername);
                 </div>
               )}
             </div>
-            <div className="mx-5  my-10 p-1 shadow-lg w-[450px]  rounded-lg">
+            <div className="mx-5  mt-10 p-1 shadow-lg  rounded-lg lg:w-[410px]">
               <img src={gitimg} className="rounded-lg" />
               <div className="flex p-2 justify-around">
                 <div className="flex">
@@ -514,41 +508,43 @@ console.log(leetcodeUsername);
               )}
             </div>
             <PlatformCard title={"...."} img={commingSoonImg} />
-            <PlatformCard  title={"...."} img={commingSoonImg} />
+            <PlatformCard title={"...."} img={commingSoonImg} />
+            <PlatformCard title={"...."} img={commingSoonImg} />
+            <PlatformCard title={"...."} img={commingSoonImg} />
           </div>
-          <div className="mt-[160px]">
-          <div className="flex justify-around bg-[#f6a130] py-14">
-        <div>
-          <h1 className="text-[20px] font-extrabold">Profolio.in</h1>
-          <h1 className="py-2">Showcase Your Code <br />
-            Journey</h1>
-          <h1>Stay in touch with us:</h1>
-          <div className="flex">
-
-          </div>
-        </div>
-        <div className="flex ">
-          <div className="px-10">
-            <h1 className="">Company</h1>
-            <h1>About</h1>
-            <h1>Careers</h1>
-            <h1>Training</h1>
-          </div>
-          <div className="px-10">
-            <h1>Services</h1>
-            <h1>Designing</h1>
-            <h1>Development</h1>
-            <h1>Security</h1>
-          </div>
-          <div className="px-10 f">
-            <h1>Quick Links</h1>
-            <h1>Home</h1>
-            <h1>Protfolio</h1>
-            <h1>Producs</h1>
-          </div>
-        </div>
-      </div>
-          </div>
+          {/* <div className="mt-[160px]">
+            <div className="flex justify-around bg-[#f6a130] py-14">
+              <div>
+                <h1 className="text-[20px] font-extrabold">Profolio.in</h1>
+                <h1 className="py-2">
+                  Showcase Your Code <br />
+                  Journey
+                </h1>
+                <h1>Stay in touch with us:</h1>
+                <div className="flex"></div>
+              </div>
+              <div className="flex ">
+                <div className="px-10">
+                  <h1 className="">Company</h1>
+                  <h1>About</h1>
+                  <h1>Careers</h1>
+                  <h1>Training</h1>
+                </div>
+                <div className="px-10">
+                  <h1>Services</h1>
+                  <h1>Designing</h1>
+                  <h1>Development</h1>
+                  <h1>Security</h1>
+                </div>
+                <div className="px-10 f">
+                  <h1>Quick Links</h1>
+                  <h1>Home</h1>
+                  <h1>Protfolio</h1>
+                  <h1>Producs</h1>
+                </div>
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
 

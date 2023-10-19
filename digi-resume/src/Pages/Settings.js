@@ -77,30 +77,27 @@ const ProfileSettings = () => {
   }
 
   return (
-    <div className="p-5 m-5">
+    <div className="p-5 m-2">
       <h2 className="text-[24px]">Profile Settings</h2>
-      <div className="flex ">
-        <div className="flex items-center bg-slate-100 p-1 m-2 rounded-xl w-[300px]">
+      <div className="flex flex-wrap justify-center ">
+        <div className="flex items-center bg-slate-100 p-1 m-2 rounded-xl w-full">
           <img width={80} src={gitimg} />
           <div>
-            <div className="flex">
+          <div className="flex items-center ">
               <h1 className="text-[16px]">{lastGithubUsername}</h1>
-              <div className="pl-2">
-                <EditIcon sx={{fontSize: 20}}/>
-              </div>
+              <h2 className="text-[14px] text-blue-500 px-2">Edit</h2>
             </div>
             <h1 className="font-semibold text-[18px]">GitHub</h1>
           </div>
         </div>
-        <div className="flex items-center bg-slate-100 p-1 m-2 rounded-xl w-[300px]">
+        <div className="flex items-center bg-slate-100 p-1 m-2 rounded-xl w-full">
           <img width={90} src={leetimg} />
           <div>
-            <div className="flex">
+            <div className="flex items-center ">
               <h1 className="text-[16px]">{lastLeetcodeUsername}</h1>
-              <div className="pl-2">
-                <EditIcon sx={{fontSize: 20}}/>
-              </div>
+              <h2 className="text-[14px] text-blue-500 px-2">Edit</h2>
             </div>
+            
             <h1 className="font-semibold text-[18px]">Leetcode</h1>
           </div>
         </div>

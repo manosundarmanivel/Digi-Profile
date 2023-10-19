@@ -29,7 +29,6 @@ const LeetCode = () => {
                 userCalendar
                 {
                   activeYears
-                  dccBadges
                   streak
                   totalActiveDays
                   submissionCalendar
@@ -113,45 +112,56 @@ const LeetCode = () => {
   // }, 0);
 
   return submission == null ? (
-    <Shimmer/>
+    <Shimmer />
   ) : (
-    <div className="flex p-5 m-5 ">
-      <div className="p-5 m-5 text-center bg-white rounded-xl shadow-lg w-[250px] h-[900px]">
-        <img className="rounded-full p-2" src={submission.profile.userAvatar} />
-        <h1 className="font-bold text-[24px] p-2">
-          {submission.profile.realName}
-        </h1>
-        <h1 className="font-bold text-[18px]">
-          Rank : {submission.profile.ranking}
-        </h1>
-
-        <div className="text-start p-3 py-10 ">
-          <div className="flex pb-5 ">
-            
-            <LocationOnIcon /> <h1 className="px-3">{submission.profile.countryName}</h1>
+    <div className="flex justify-center">
+      <div className="p-5 ">
+        <div className="text-center">
+          <div className=" flex justify-center" >
+          <img
+            className="rounded-full m-2  "
+            src={submission.profile.userAvatar}
+          />
           </div>
-          <div className="flex pb-5" >
-            
-            <LinkedInIcon /> <a  className="px-3" href={submission.linkedinUrl}>LinkedIn</a>
-            </div>
-            <div className="flex pb-5">
-              
-              <GitHubIcon /> <a  className="px-3" href={submission.githubUrl}>GitHub</a>
-            </div>
-            <div className="flex pb-5">
-              
-              <TwitterIcon /> <a  className="px-3" href={submission.twitterUrl}>Twitter</a>
-            </div>
+          <h1 className="font-bold text-[24px] ">
+            {submission.profile.realName}
+          </h1>
+          <div className="flex p-2 justify-center">
+            <LocationOnIcon />{" "}
+            <h1 className="px-3">{submission.profile.countryName}</h1>
+          </div>
+          <h1 className="font-bold text-[18px]">
+            Rank : {submission.profile.ranking}
+          </h1>
           
+
+          <div className="text-center justify-center  py-10 flex flex-wrap ">
+            <div className="flex pb-5">
+              <LinkedInIcon />{" "}
+              <a className="px-3" href={submission.linkedinUrl}>
+                LinkedIn
+              </a>
+            </div>
+            <div className="flex pb-5">
+              <GitHubIcon />{" "}
+              <a className="px-3" href={submission.githubUrl}>
+                GitHub
+              </a>
+            </div>
+            <div className="flex pb-5">
+              <TwitterIcon />{" "}
+              <a className="px-3" href={submission.twitterUrl}>
+                Twitter
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="">
-        <div className="flex ">
-          <div className="p-5 m-2">
+        <div className="flex flex-wrap  justify-center">
+          <div className=" ">
             <h1 className="font-bold text-[20px] py-5">Problems Solved</h1>
-            <div className="flex items-center p-5 rounded-lg bg-white shadow-lg">
+            <div className="flex  items-center p-5 rounded-lg bg-white shadow-lg">
               <CircularProgress
-                sx={{ "--CircularProgress-size": "120px" }}
+                sx={{ "--CircularProgress-size": "100px" }}
                 size="lg"
                 color="primary"
                 determinate
@@ -159,14 +169,14 @@ const LeetCode = () => {
               >
                 <div className="text-center ">
                   <h1 className="font-bold text-[20px] text-black">
-                    {
-                      submission.submitStats.acSubmissionNum[1].count + submission.submitStats.acSubmissionNum[2].count + submission.submitStats.acSubmissionNum[3].count
-                    }
+                    {submission.submitStats.acSubmissionNum[1].count +
+                      submission.submitStats.acSubmissionNum[2].count +
+                      submission.submitStats.acSubmissionNum[3].count}
                   </h1>
                   <h1 className="text-[15px] text-black">Solved</h1>
                 </div>
               </CircularProgress>
-              <div className="w-[300px] mb-2 pl-5 ml-3">
+              <div className="w-[180px] mb-2 pl-2 ml-3">
                 <div className="flex py-2">
                   <h1>Easy :</h1>
                   <h1>{submission.submitStats.acSubmissionNum[1].count}</h1>
@@ -201,18 +211,18 @@ const LeetCode = () => {
             </div>
             {/* <div className="font-bold text-[20px] py-5"> Earned Batches</div> */}
           </div>
-          <div className="p-5 m-2">
+          <div className="">
             <h1 className="font-bold text-[20px] py-5">Languages</h1>
-            <div className="items-center p-5 rounded-lg bg-white shadow-lg w-[480px]">
+            <div className="items-center p-5 rounded-lg bg-white shadow-lg w-full">
               {submission.languageProblemCount.map((prb) => (
                 <div className="flex p-[5px] items-center justify-between">
                   <div className="bg-[#f7f8fa] rounded-full p-2 px-4 ">
                     <h1>{prb.languageName}</h1>
                   </div>
-                 
+
                   <div>
                     <div className="flex justify-end">
-                      <h1 className="font-extrabold  px-3">
+                      <h1 className="font-extrabold  px-6">
                         {prb.problemsSolved}
                       </h1>
                       <h1>Problem Solved</h1>
@@ -224,22 +234,24 @@ const LeetCode = () => {
             {/* <div className="font-bold text-[20px] py-5"> Earned Batches</div> */}
           </div>
         </div>
-        <h1 className="font-bold text-[20px] px-6 ">Recent Submissions</h1>
-        <div className="m-3 bg-white mt58 p-5 w-[1000px] rounded-lg shadow-lg mx-8">
+        <h1 className="font-bold text-[20px] py-5  ">Recent Submissions</h1>
+       <div className="flex justify-center">
+       <div className="m-2 bg-white  p-4 w-full  rounded-lg shadow-lg ">
           {problems.map((problem, index) => (
             <div
               key={problem.timestamp}
-              className={`flex justify-start p-3 rounded-lg items-center ${
+              className={`  justify-center p-3 rounded-lg items-center ${
                 index % 2 === 0 ? "bg-white" : "bg-[#f7f8fa]"
               }`}
             >
               <h1 className="text-[18px] font-semibold">{problem.title}</h1>
-              <h1 className="ml-4 text-[14px] text-gray-600">
+              <h1 className=" text-[14px] text-gray-600">
                 <TimeAgo timestamp={problem.timestamp} />
               </h1>
             </div>
           ))}
         </div>
+       </div>
       </div>
     </div>
   );
