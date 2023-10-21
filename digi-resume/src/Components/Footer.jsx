@@ -1,4 +1,5 @@
 import React from 'react'
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Footer = () => {
   return (
@@ -9,28 +10,21 @@ const Footer = () => {
             Journey</h1>
           <h1>Stay in touch with us:</h1>
           <div className="flex">
-
+            <a href='https://www.linkedin.com/posts/profilio-in_developerprofiles-launchingsoon-activity-7119044690343034880-e-c2?utm_source=share&utm_medium=member_desktop'><LinkedInIcon /></a>
+    
           </div>
         </div>
-        <div className="flex ">
+        <div className="flex flex-wrap ">
           <div className="px-10">
-            <h1 className="">Company</h1>
-            <h1>About</h1>
-            <h1>Careers</h1>
-            <h1>Training</h1>
-          </div>
-          <div className="px-10">
-            <h1>Services</h1>
-            <h1>Designing</h1>
-            <h1>Development</h1>
-            <h1>Security</h1>
-          </div>
-          <div className="px-10 f">
-            <h1>Quick Links</h1>
+            
+           
             <h1>Home</h1>
             <h1>Protfolio</h1>
-            <h1>Producs</h1>
+            <h1>About</h1>
+            <h1>Quick Links</h1>
+            
           </div>
+         
         </div>
       </div>
   )
