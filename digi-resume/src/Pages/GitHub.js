@@ -7,7 +7,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Shimmer from "../Components/Shimmer";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Link } from "react-router-dom";
-import GitHubPng from "../Assets/img/git.png";
+
 import AssessmentIcon from '@mui/icons-material/Assessment';
 const GitHub = () => {
   const [contributions, setContributions] = useState({});

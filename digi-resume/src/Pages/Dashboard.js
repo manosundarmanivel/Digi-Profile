@@ -3,9 +3,9 @@ import leetimg from "../Assets/img/leetimg.png";
 import gitimg from "../Assets/img/gitpng.png";
 import topcoderimg from "../Assets/img/topcoderthumb.png"
 import hackerrank from "../Assets/img/HackerRanktumb.png";
-import SendIcon from "@mui/icons-material/Send";
-import { Link, useNavigate } from "react-router-dom";
-import LogoutIcon from "@mui/icons-material/Logout";
+
+import {useNavigate } from "react-router-dom";
+
 import commingSoonImg from "../Assets/img/comming-fotor.png";
 import leetlogo from "../Assets/img/leetcode.png";
 import githublogo from "../Assets/img/github.png";
@@ -16,9 +16,9 @@ import { auth, db } from "../Database/Firebase";
 import {
   addDoc,
   collection,
-  query,
+
   orderBy,
-  limit,
+
   getDocs,
 } from "firebase/firestore";
 import Footer from "../Components/Footer";

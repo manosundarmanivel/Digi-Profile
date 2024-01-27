@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import git from "../Assets/img/git.png";
 import leet from "../Assets/img/leetcode.png";
-import LeetCode from './LeetCode';
+
 
 const DialogBox = ({ onClose }) => {
   return (
@@ -241,12 +241,12 @@ const Home = () => {
         <h1 className="text-[16px] text-yellow-500">/ WE HAVE /</h1>
         <h1 className="text-[44px] p-5">Integrated Your Profile </h1>
         <div className="flex  flex-wrap justify-evenly  text-center">
-          <div className="p-5 ">
-            <img src={git} className="w-[250px] lg:w-[250px] pt-6 " />
+          <div className=" ">
+            <img src={git} className="w-[200px] lg:w-[250px] pt-6 " />
           </div>
          
-          <div className="flex items-center p-5 mx-10 ">
-          <img src={leet} className="w-[90px] lg:w-[90px] " />
+          <div className="flex items-center p-5  mx-10 ">
+          <img src={leet} className="w-[60px] lg:w-[80px] " />
           <h1 className="text-[34px] font-extrabold">LeetCode</h1>
           </div>
         </div>

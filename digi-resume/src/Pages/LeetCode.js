@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TimeAgo from "../Components/TimeStamp";
 import CircularProgress from "@mui/joy/CircularProgress";
-import ReportIcon from "@mui/icons-material/Report";
+
 import LinearProgress from "@mui/joy/LinearProgress";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -12,12 +12,12 @@ import Shimmer from "../Components/Shimmer";
 
 const LeetCode = () => {
   const [submission, setSubmissions] = useState();
-  const [problemsCount, setProblemsCount] = useState(0);
+
   const [problems, setProblems] = useState([]);
-  const [website, setWebsite] = useState();
+
   const [searchParams] = useSearchParams();
   const username = searchParams.get("v");
-  const value = 0;
+
 
   const getData = async () => {
     const query = `

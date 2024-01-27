@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="p-5">
         <h1 className="text-[20px] font-extrabold">Contact Us</h1>
         
-        <h1 className="pt-5 ">profiliotechnologies@gmail.com</h1>
+        <h1 className="pt-5 ">Profiliotechnologies@gmail.com</h1>
        
       </div>
       <div className="p-5">

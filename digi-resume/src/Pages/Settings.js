@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react";
 import {
   collection,
-  addDoc,
+
   getDocs,
-  query,
-  orderBy,
-  limit,
+ 
 } from "firebase/firestore";
 import { auth, db } from "../Database/Firebase";
-import GitHub from "./GitHub";
+
 import gitimg from "../Assets/img/github.png";
 import leetimg from "../Assets/img/leetcode.png"
-import EditIcon from '@mui/icons-material/Edit';
-import LeetCode from './LeetCode';
+
 import CircularIndeterminate from "../Components/Shimmer";
 
 const ProfileSettings = () => {
