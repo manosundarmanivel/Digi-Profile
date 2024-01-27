@@ -115,8 +115,8 @@ const Home = () => {
           <div className="my-5">
             <button
               onClick={() => {
-                // handleOpenDialog()
-                handleSignInWithGoogle();
+                handleOpenDialog()
+                // handleSignInWithGoogle();
               }}
               className="p-3 py-4 mt-12 px-12 mt-3 mx-2 hover:bg-black bg-[#323234] text-white rounded-full text-[18px]"
             >
