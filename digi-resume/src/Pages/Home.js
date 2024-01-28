@@ -165,11 +165,11 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <div className="px-5 pb-16 justify-center text-center bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#fdebcf] ">
+      <div className="px-10 pb-16 justify-center text-center bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#fdebcf] ">
         <h1 className="text-[16px] text-yellow-500">/ WHY WE /</h1>
         <h1 className="text-[44px] p-5">Why Choose Profilio</h1>
         <div className="flex flex-wrap justify-center ">
-          <div className="text-center p-3">
+          <div className="text-center p-6">
             <div className="bg-red-200 rounded-full p-3 w-[54px] mx-auto">
               <h1 className="text-[20px]">01</h1>
             </div>
@@ -182,7 +182,7 @@ const Home = () => {
               central hub.
             </p>
           </div>
-          <div className="text-center p-3">
+          <div className="text-center p-6">
             <div className="bg-green-200 rounded-full p-3 w-[54px] mx-auto">
               <h1 className="text-[20px]">02</h1>
             </div>
@@ -195,7 +195,7 @@ const Home = () => {
               up-to-date digital presence.
             </p>
           </div>
-          <div className="text-center p-3">
+          <div className="text-center p-6">
             <div className="bg-blue-200 rounded-full p-3 w-[54px] mx-auto">
               <h1 className="text-[20px]">03</h1>
             </div>
@@ -208,7 +208,7 @@ const Home = () => {
               LeetCode.
             </p>
           </div>
-          <div className="text-center p-3">
+          <div className="text-center p-6">
             <div className="bg-yellow-200 rounded-full p-3 w-[54px] mx-auto">
               <h1 className="text-[20px]">04</h1>
             </div>
@@ -221,7 +221,7 @@ const Home = () => {
               expertise across coding platforms.
             </p>
           </div>
-          <div className="text-center p-3">
+          <div className="text-center p-6">
             <div className="bg-orange-200 rounded-full p-3 w-[54px] mx-auto">
               <h1 className="text-[20px]">05</h1>
             </div>
