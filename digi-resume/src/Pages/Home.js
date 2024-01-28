@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import git from "../Assets/img/git.png";
 import leet from "../Assets/img/leetcode.png";
-
+import hack from "../Assets/img/hackerrank_logo.png"
+import kec_events from "../Assets/img/KECE.png";
+import play from "../Assets/img/play.png"
 
 const DialogBox = ({ onClose }) => {
   return (
@@ -145,6 +147,7 @@ const Home = () => {
           </h1>
         </div>
       </div>
+      
       <div className="flex  text-center  lg:px-32 py-10 bg-gradient-to-b from-[#ffffff] via-[#fdebcf] to-[#ffffff]">
         <div className=" hidden lg:block justify-center p-5  ">
           <img src={Benfit} className="w-[300px] lg:w-[700px] " />
@@ -169,6 +172,24 @@ const Home = () => {
       <div className=" block lg:hidden justify-center  pb-10  ">
           <img src={Benfit} className="w-[400px] lg:w-[700px] " />
         </div>
+      <div className="px-5 py-10 pb-16 justify-center text-center bg-gradient-to-b from-[#ffffff] via-[#fef3e1] to-[#ffffff]  ">
+        <h1 className="text-[16px] text-yellow-500">/ WE HAVE /</h1>
+        <h1 className="lg:text-[44px] text-[40px] p-5">Integrate Your Profile </h1>
+        <div className="flex  flex-wrap justify-evenly  text-center">
+          <div className=" ">
+            <img src={git} className="w-[200px] lg:w-[250px] pt-6 " />
+          </div>
+          <div className="pt-5 ">
+            <img src={hack} className="w-[250px] lg:w-[300px] pt-6 " />
+          </div>
+         
+          <div className="flex items-center  pt-10 lg:pt-3 mx-10 ">
+          <img src={leet} className="w-[60px]  lg:w-[80px] " />
+          <h1 className="text-[34px] font-extrabold">LeetCode</h1>
+          </div>
+        </div>
+      </div>
+      
       <div className="px-10 pb-16 justify-center text-center bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#fdebcf] ">
         <h1 className="text-[16px] text-yellow-500">/ WHY WE /</h1>
         <h1 className="lg:text-[44px] text-[40px] p-5">Why Choose Profilio</h1>
@@ -241,18 +262,19 @@ const Home = () => {
           </div>
         </div>
       </div>
+      
       <div className="px-5 py-10 pb-16 justify-center text-center bg-gradient-to-b from-[#fdebcf] via-[#ffffff] to-[#f7ecdb]  ">
-        <h1 className="text-[16px] text-yellow-500">/ WE HAVE /</h1>
-        <h1 className="lg:text-[44px] text-[40px] p-5">Integrate Your Profile </h1>
-        <div className="flex  flex-wrap justify-evenly  text-center">
+        <h1 className="text-[16px] text-yellow-500">/ WHO WE ARE /</h1>
+        <h1 className="lg:text-[44px] text-[40px] p-5"> Our Products </h1>
+        <div className="flex  justify-center  text-center">
           <div className=" ">
-            <img src={git} className="w-[200px] lg:w-[250px] pt-6 " />
+            <img src={kec_events} className="w-[220px] lg:w-[260px] pt-6 " />
+            <img src={play} className="w-[200px] lg:w-[230px] pt-6 " />
+          </div>
+          <div className=" ">
+           
           </div>
          
-          <div className="flex items-center p-5 pt-10 lg:pt-3 mx-10 ">
-          <img src={leet} className="w-[60px]  lg:w-[80px] " />
-          <h1 className="text-[34px] font-extrabold">LeetCode</h1>
-          </div>
         </div>
       </div>
 
