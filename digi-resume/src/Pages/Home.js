@@ -103,7 +103,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className=" justify-center items-center   flex bg-gradient-to-b from-[#fcd18c] via-[#fdebcf] to-[#ffffff] flex-wrap lg:px-20 py-32 lg:py-32">
+      <div className=" justify-center items-center   flex bg-gradient-to-b from-[#fcd18c] via-[#fdebcf] to-[#ffffff] flex-wrap lg:px-20 pt-32 pb-10 lg:pt-32">
         <div className="text-center justify-center items-center lg:p-1 lg:px-32 p-5">
           <h1 className="font-bold text-[34px] lg:text-[42px] text-[#323234]">
             Summarize your coding journey into a unified showcase, all in one
@@ -123,7 +123,7 @@ const Home = () => {
               Let's Get Started
             </button>
           </div>
-          <div className="flex justify-center p-5 ">
+          <div className="flex justify-center lg:p-5 ">
             <img src={HomePic} className="w-[300px] lg:w-[450px] " />
           </div>
         </div>
@@ -131,7 +131,7 @@ const Home = () => {
 
       <div className="px-5 pb-16 justify-center text-center  ">
         <h1 className="text-[16px] text-yellow-500">/ INTRODUCTION /</h1>
-        <h1 className="text-[44px] p-5">Welcome to Profilio.in</h1>
+        <h1 className="lg:text-[44px] text-[40px] p-5">Welcome to Profilio.in</h1>
         <div className="flex justify-center text-center">
           <img src="" />
           <h1 className="lg:px-60 px-1 leading-7">
@@ -153,7 +153,7 @@ const Home = () => {
           <h1 className="text-[16px] text-yellow-500">
             / BENEFITS OF PROFILIO /
           </h1>
-          <h1 className="text-[44px] p-5">Streamline Your Digital Identity</h1>
+          <h1 className="lg:text-[44px] text-[40px]  p-5">Streamline Your Digital Identity</h1>
           <p className="leading-7 px-5 py-5">
             Elevate your online presence with Profilio – a unified platform
             simplifying the showcase of your coding expertise. Our innovative
@@ -164,10 +164,14 @@ const Home = () => {
             journey finds its unified home.
           </p>
         </div>
+        
       </div>
+      <div className=" block lg:hidden justify-center  pb-10  ">
+          <img src={Benfit} className="w-[400px] lg:w-[700px] " />
+        </div>
       <div className="px-10 pb-16 justify-center text-center bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#fdebcf] ">
         <h1 className="text-[16px] text-yellow-500">/ WHY WE /</h1>
-        <h1 className="text-[44px] p-5">Why Choose Profilio</h1>
+        <h1 className="lg:text-[44px] text-[40px] p-5">Why Choose Profilio</h1>
         <div className="flex flex-wrap justify-center ">
           <div className="text-center p-6">
             <div className="bg-red-200 rounded-full p-3 w-[54px] mx-auto">
@@ -239,14 +243,14 @@ const Home = () => {
       </div>
       <div className="px-5 py-10 pb-16 justify-center text-center bg-gradient-to-b from-[#fdebcf] via-[#ffffff] to-[#f7ecdb]  ">
         <h1 className="text-[16px] text-yellow-500">/ WE HAVE /</h1>
-        <h1 className="text-[44px] p-5">Integrated Your Profile </h1>
+        <h1 className="lg:text-[44px] text-[40px] p-5">Integrate Your Profile </h1>
         <div className="flex  flex-wrap justify-evenly  text-center">
           <div className=" ">
             <img src={git} className="w-[200px] lg:w-[250px] pt-6 " />
           </div>
          
-          <div className="flex items-center p-5  mx-10 ">
-          <img src={leet} className="w-[60px] lg:w-[80px] " />
+          <div className="flex items-center p-5 pt-10 lg:pt-3 mx-10 ">
+          <img src={leet} className="w-[60px]  lg:w-[80px] " />
           <h1 className="text-[34px] font-extrabold">LeetCode</h1>
           </div>
         </div>

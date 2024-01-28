@@ -3,14 +3,14 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
   return (
-    <div className="flex flex-wrap justify-evenly px-5 bg-[#f6a130] py-14">
+    <div className="flex flex-wrap justify-center px-5 bg-[#f6a130] py-14">
       <div className="p-5">
         <h1 className="text-[20px] font-extrabold">Contact Us</h1>
         
-        <h1 className="pt-5 ">Profiliotechnologies@gmail.com</h1>
+        <h1 className="pt-3 ">Profiliotechnologies@gmail.com</h1>
        
       </div>
-      <div className="p-5">
+      <div className="p-5 ">
         <h1 className="text-[20px] font-extrabold">Company</h1>
         <h1>Home</h1>
         <h1>About Us</h1>
