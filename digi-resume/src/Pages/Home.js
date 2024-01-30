@@ -9,6 +9,7 @@ import leet from "../Assets/img/leetcode.png";
 import hack from "../Assets/img/hackerrank_logo.png"
 import kec_events from "../Assets/img/KECE.png";
 import play from "../Assets/img/play.png"
+import stack from "../Assets/img/Stack_Overflow-Logo.wine.png"
 
 const DialogBox = ({ onClose }) => {
   return (
@@ -179,11 +180,14 @@ const Home = () => {
           <div className=" ">
             <img src={git} className="w-[200px] lg:w-[250px] pt-6 " />
           </div>
-          <div className="pt-5 ">
+          <div className="py-6 ">
             <img src={hack} className="w-[250px] lg:w-[300px] pt-6 " />
           </div>
+          <div className="pb-5 ">
+            <img src={stack} className="w-[250px] lg:w-[300px] pt-6 " />
+          </div>
          
-          <div className="flex items-center  pt-10 lg:pt-3 mx-10 ">
+          <div className="flex items-center  pt-5 lg:pt-3  ">
           <img src={leet} className="w-[60px]  lg:w-[80px] " />
           <h1 className="text-[34px] font-extrabold">LeetCode</h1>
           </div>
