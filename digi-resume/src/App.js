@@ -12,6 +12,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ProfileSettings from './Pages/Settings';
 import store from './Utils/Store';
 import { Provider } from 'react-redux';
+import HackerRank from './Pages/HackerRank';
+import Topcoder from './Pages/Topcoder';
+import HackerEarth from './Pages/HackerEarth';
 
 
 function App() {
@@ -46,6 +49,18 @@ function App() {
     {
       path:'/github',
       element:<GitHub/>
+    },
+    {
+      path:'/hackerrank',
+      element:<HackerRank/>
+    },
+    {
+      path:'/topcoder',
+      element:<Topcoder/>
+    },
+    {
+      path :'/hackerearth',
+      element: <HackerEarth/>
     },
     {
       path:'/settings',

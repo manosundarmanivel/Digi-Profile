@@ -492,10 +492,10 @@ const Dashboard = () => {
                 </div>
               )}
             </div>
-            <PlatformCard title={"...."} img={hackerrank} />
-            <PlatformCard title={"...."} img={topcoderimg} />
-            <PlatformCard title={"...."} img={commingSoonImg} />
-            <PlatformCard title={"...."} img={commingSoonImg} />
+            <PlatformCard title={"...."} img={hackerrank} page={'/hackerrank'} />
+            <PlatformCard title={"...."} img={topcoderimg} page={'/hackerearth'}/>
+            <PlatformCard title={"...."} img={commingSoonImg}page={'/'} />
+            <PlatformCard title={"...."} img={commingSoonImg} page={'/'}/>
            
           </div>
           {/* <div className="mt-[160px]">
