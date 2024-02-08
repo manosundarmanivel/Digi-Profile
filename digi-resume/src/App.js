@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import HackerRank from './Pages/HackerRank';
 import Topcoder from './Pages/Topcoder';
 import HackerEarth from './Pages/HackerEarth';
+import CompleteProfile from './Pages/CompleteProfile';
 
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
     {
       path:'/settings',
       element:<ProfileSettings/>
+    },
+    {
+      path:'/profile',
+      element:<CompleteProfile/>
     }
    
 
