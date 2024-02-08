@@ -5,7 +5,7 @@ const HackerEarth = () => {
     useEffect(() =>{
         const fetchData = async () => {
             try{
-                const response = await fetch("https://www.hackerearth.com/profiles/api/manosundarmanivel/");
+                const response = await fetch("https://www.hackerearth.com/profiles/api/lboris/submission-activity");
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
