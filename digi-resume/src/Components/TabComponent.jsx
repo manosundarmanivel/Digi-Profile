@@ -246,7 +246,7 @@ export default function BasicTabs() {
             <h1>NA</h1>
           </div>
         </div>
-        <div className="border p-2 m-3">
+        <div className="border p-2 m-3 w-32">
           <h1>Pinned Repository</h1>
         </div>
         <div>
