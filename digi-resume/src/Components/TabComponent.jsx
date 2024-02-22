@@ -67,10 +67,14 @@ export default function BasicTabs() {
           <Tab label="Achievements" {...a11yProps(4)} />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}></CustomTabPanel>
+      <CustomTabPanel value={value} index={0}>
+        <h1>Programming Languages</h1>
+        <h1>FrameWork and Libraries</h1>
+        <h1>DataBase and Technologies</h1>
+      </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <div className="flex flex-wrap  justify-around">
-          <div className="border p-3 m-3">
+          <div className="shadow-lg p-3 m-3">
             <div className="flex items-center">
               <img src={leet} width={35} />
               <h1 className="font-semibold p-1">LeetCode</h1>
@@ -108,7 +112,7 @@ export default function BasicTabs() {
               </div>
             </div>
           </div>
-          <div className="border p-3 m-3">
+          <div className="shadow-lg p-3 m-3">
             <div className="flex items-center">
               <img src={hack} width={140} className="m-3" />
             </div>
@@ -145,7 +149,7 @@ export default function BasicTabs() {
               </div>
             </div>
           </div>
-          <div className="border p-3 m-3">
+          <div className="shadow-lg p-3 m-3">
             <div className="flex items-center">
               <img src={hackearth} width={120} className="m-2" />
             </div>
@@ -182,7 +186,7 @@ export default function BasicTabs() {
               </div>
             </div>
           </div>
-          <div className="border p-3 m-3">
+          <div className="shadow-lg p-3 m-3">
             <div className="flex items-center">
               <img src={topcoder} width={120} className="m-2" />
             </div>
@@ -222,7 +226,7 @@ export default function BasicTabs() {
         </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <div className="border">
+        <div className="shadow-lg">
         <img src={github} width={120} className="m-2 " />
         <div className="flex  m-2 p-2 justify-around">
         
