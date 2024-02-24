@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React  from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -11,6 +11,8 @@ import hackearth from "../Assets/img/HackerEarth.png";
 import topcoder from "../Assets/img/topcoder.png";
 import LeetCode from "../Pages/LeetCode";
 import github from "../Assets/img/git.png"
+import HomeIcon from '@mui/icons-material/Home'; 
+import { useEffect } from "react";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,6 +54,92 @@ export default function BasicTabs() {
     setValue(newValue);
   };
 
+  const[leetprofile , setLeetProfile] = React.useState("");
+
+
+  const getLeetData = async () => {
+    const query = `
+        { 
+            
+            matchedUser(username: "manosundarmanivel") 
+            {
+             
+                userCalendar
+                {
+                  activeYears
+                  streak
+                  totalActiveDays
+                  submissionCalendar
+                }
+              
+                twitterUrl
+                githubUrl
+                linkedinUrl
+                username
+                submitStats: submitStatsGlobal 
+                {
+                    acSubmissionNum 
+                    {
+                        difficulty
+                        count
+                        submissions
+                    }
+                }
+                profile: profile
+                {
+                    aboutMe
+                    categoryDiscussCount
+                    categoryDiscussCountDiff
+                    company
+                    countryName
+                    jobTitle
+                    postViewCount
+                    postViewCountDiff
+                    ranking
+                    realName
+                    reputation
+                    reputationDiff
+                    school
+                    skillTags
+                    solutionCount
+                    solutionCountDiff
+                    userAvatar
+                   
+
+
+
+                }
+                languageProblemCount: languageProblemCount
+                {
+                  languageName
+                  problemsSolved
+                }
+                problemsSolvedBeatsStats: problemsSolvedBeatsStats
+                {
+                  difficulty
+                  percentage
+                }
+                
+
+
+                
+            }
+            
+            
+        }
+      `;
+
+    const data = await fetch("https://leetcode.com/graphql?query=" + query);
+    const json = await data.json();
+    console.log(json);
+    setLeetProfile(json.data.matchedUser);
+
+      }
+
+      useEffect(() => {
+        getLeetData();
+      }, []);
+
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -60,11 +148,11 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Essential Skills" {...a11yProps(0)} />
-          <Tab label="Critical Thinking" {...a11yProps(1)} />
-          <Tab label="Project Involvements" {...a11yProps(2)} />
-          <Tab label="Interpersonal Abilities" {...a11yProps(3)} />
-          <Tab label="Achievements" {...a11yProps(4)} />
+          <Tab label={<><HomeIcon /> Essential Skills</>} {...a11yProps(0)} /> {/* Add icon to label */}
+        <Tab label={<><HomeIcon /> Critical Thinking</>} {...a11yProps(1)} />
+        <Tab label={<><HomeIcon /> Project Involvements</>} {...a11yProps(2)} />
+        <Tab label={<><HomeIcon /> Interpersonal Abilities</>} {...a11yProps(3)} />
+        <Tab label={<><HomeIcon /> Achievements</>} {...a11yProps(4)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -82,30 +170,30 @@ export default function BasicTabs() {
             <div>
               <div className="flex justify-between">
                 <div className="border p-2 m-3 w-[200px]">
-                  <h1>Total Solved</h1>
-                  <h1>NA</h1>
+                  <h1 className="text-sm font-light">Total Solved</h1>
+                  <h1 className="text-xl ">NA</h1>
                 </div>
                 <div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Active </h1>
                     <h1>NA</h1>
                   </div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Streak </h1>
                     <h1>NA</h1>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Rank </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Badge </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Submissions </h1>
                   <h1>NA</h1>
                 </div>
@@ -118,31 +206,31 @@ export default function BasicTabs() {
             </div>
             <div>
               <div className="flex justify-between">
-                <div className="border p-2 m-3 w-[200px]">
+                <div className="border rounded-lg p-2 m-3 w-[200px]">
                   <h1>Total Solved</h1>
                   <h1>NA</h1>
                 </div>
                 <div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Active </h1>
                     <h1>NA</h1>
                   </div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Streak </h1>
                     <h1>NA</h1>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Rank </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Badge </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Submissions </h1>
                   <h1>NA</h1>
                 </div>
@@ -155,31 +243,31 @@ export default function BasicTabs() {
             </div>
             <div>
               <div className="flex justify-between">
-                <div className="border p-2 m-3 w-[200px]">
+                <div className="border rounded-lg p-2 m-3 w-[200px]">
                   <h1>Total Solved</h1>
                   <h1>NA</h1>
                 </div>
                 <div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Active </h1>
                     <h1>NA</h1>
                   </div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Streak </h1>
                     <h1>NA</h1>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Rank </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Badge </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Submissions </h1>
                   <h1>NA</h1>
                 </div>
@@ -192,31 +280,31 @@ export default function BasicTabs() {
             </div>
             <div>
               <div className="flex justify-between">
-                <div className="border p-2 m-3 w-[200px]">
+                <div className="border rounded-lg p-2 m-3 w-[200px]">
                   <h1>Total Solved</h1>
                   <h1>NA</h1>
                 </div>
                 <div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Active </h1>
                     <h1>NA</h1>
                   </div>
-                  <div className="border p-2 m-3">
+                  <div className="border rounded-lg p-2 m-3">
                     <h1>Streak </h1>
                     <h1>NA</h1>
                   </div>
                 </div>
               </div>
               <div className="flex">
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Rank </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Badge </h1>
                   <h1>NA</h1>
                 </div>
-                <div className="border p-2 m-3">
+                <div className="border rounded-lg p-2 m-3">
                   <h1>Submissions </h1>
                   <h1>NA</h1>
                 </div>
@@ -231,38 +319,38 @@ export default function BasicTabs() {
         <div className="flex  m-2 p-2 justify-around">
         
         <div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Total Repositories</h1>
             <h1>NA</h1>
           </div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Recent Commits</h1>
             <h1>NA</h1>
           </div>
         </div>
         <div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Pull Request</h1>
             <h1>NA</h1>
           </div>
-          <div className="border p-5 m-3">
+          <div className="border rounded-lg p-5 m-3">
             <h1>Issues</h1>
             <h1>NA</h1>
           </div>
         </div>
-        <div className="border p-2 m-3 w-32">
+        <div className="border rounded-lg p-2 m-3 w-32">
           <h1>Pinned Repository</h1>
         </div>
         <div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Followers</h1>
             <h1>NA</h1>
           </div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Following</h1>
             <h1>NA</h1>
           </div>
-          <div className="border p-2 m-3">
+          <div className="border rounded-lg p-2 m-3">
             <h1>Contributions</h1>
             <h1>NA</h1>
           </div>
