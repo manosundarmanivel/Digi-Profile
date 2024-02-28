@@ -245,7 +245,7 @@ export default function BasicTabs() {
               <div className="flex justify-between">
                 <div className="border rounded-lg p-2 m-3 w-[200px]">
                   <h1>Total Solved</h1>
-                  <h1>NA</h1>
+                  <h1>NAA</h1>
                 </div>
                 <div>
                   <div className="border rounded-lg p-2 m-3">
