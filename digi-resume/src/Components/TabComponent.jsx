@@ -217,7 +217,7 @@ export default function BasicTabs() {
                   </div>
                   <div className="border rounded-lg p-2 m-3">
                     <h1>Streak </h1>
-                    <h1>NA</h1>
+                    <h1>NAA</h1>
                   </div>
                 </div>
               </div>
